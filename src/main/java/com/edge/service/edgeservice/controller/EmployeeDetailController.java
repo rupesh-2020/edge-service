@@ -32,7 +32,10 @@ public class EmployeeDetailController {
 	public ResponseEntity<List<Employee>> getEmployeesByDesignation(@PathVariable String designation) {	
 		ResponseEntity<List<Employee>> entity = employeeWebService.getAllEmployees();
 		List<Employee> empList = entity.getBody();
-		List<Employee> filterList = empList.stream().filter(emp->emp.getDesignation().equalsIgnoreCase(designation)).collect(Collectors.toList());
+		List<Employee> filterList = empList.stream()
+				.filter(emp->emp.getDesignation().equalsIgnoreCase(designation))
+				.sorted((a,b)->a.getEmpName().compareTo(b.getEmpName()))
+				.collect(Collectors.toList());
 		ResponseEntity<List<Employee>> filterEntity = new ResponseEntity<List<Employee>>(filterList,HttpStatus.OK);
 		return filterEntity;
 	}
@@ -42,7 +45,10 @@ public class EmployeeDetailController {
 	public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable String dept) {	
 		ResponseEntity<List<Employee>> entity = employeeWebService.getAllEmployees();
 		List<Employee> empList = entity.getBody();
-		List<Employee> filterList = empList.stream().filter(emp->emp.getDepartment().equalsIgnoreCase(dept)).collect(Collectors.toList());
+		List<Employee> filterList = empList.stream()
+				.filter(emp->emp.getDepartment().equalsIgnoreCase(dept))
+				.sorted((a,b)->a.getEmpName().compareTo(b.getEmpName()))
+				.collect(Collectors.toList());
 		ResponseEntity<List<Employee>> filterEntity = new ResponseEntity<List<Employee>>(filterList,HttpStatus.OK);
 		return filterEntity;
 	}
@@ -52,7 +58,10 @@ public class EmployeeDetailController {
 	public ResponseEntity<List<Employee>> getEmployeesGTSalary(@PathVariable Long salary) {	
 		ResponseEntity<List<Employee>> entity = employeeWebService.getAllEmployees();
 		List<Employee> empList = entity.getBody();
-		List<Employee> filterList = empList.stream().filter(emp->emp.getSalary()>salary).collect(Collectors.toList());
+		List<Employee> filterList = empList.stream()
+				.filter(emp->emp.getSalary()>salary)
+				.sorted((a,b)->a.getEmpName().compareTo(b.getEmpName()))
+				.collect(Collectors.toList());
 		ResponseEntity<List<Employee>> filterEntity = new ResponseEntity<List<Employee>>(filterList,HttpStatus.OK);
 		return filterEntity;
 	}
@@ -62,7 +71,10 @@ public class EmployeeDetailController {
 	public ResponseEntity<List<Employee>> getEmployeesTHSalary(@PathVariable Long salary) {	
 		ResponseEntity<List<Employee>> entity = employeeWebService.getAllEmployees();
 		List<Employee> empList = entity.getBody();
-		List<Employee> filterList = empList.stream().filter(emp->emp.getSalary()<salary).collect(Collectors.toList());
+		List<Employee> filterList = empList.stream()
+				.filter(emp->emp.getSalary()<salary)
+				.sorted((a,b)->a.getEmpName().compareTo(b.getEmpName()))
+				.collect(Collectors.toList());
 		ResponseEntity<List<Employee>> filterEntity = new ResponseEntity<List<Employee>>(filterList,HttpStatus.OK);
 		return filterEntity;
 	}

@@ -10,16 +10,6 @@ public class Employee {
 	private String designation;
 	
 	
-	/*public Employee(String empName, long deptId, String department,
-			long salary, String designation) {
-		super();
-		this.id = (long) (Math.random()*100);
-		this.empName = empName;
-		this.deptId = deptId;
-		this.department = department;
-		this.salary = salary;
-		this.designation = designation;
-	}*/
 	public long getId() {
 		return id;
 	}
